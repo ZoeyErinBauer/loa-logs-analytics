@@ -5,3 +5,8 @@ use serde::{Deserialize, Serialize};
 pub struct UptimeGraphData{
     pub data_points : HashMap<String,f32>
 }
+
+pub struct UptimeAnalytics{
+    pub graph_data : UptimeGraphData,
+    pub character_name : String
+}
