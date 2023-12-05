@@ -1,0 +1,73 @@
+[2023-12-04T21:47:59.207132Z] INFO [app] starting app v1.4.2
+[2023-12-04T21:47:59.297128Z] INFO [app] settings not found, auto_iface enabled, using ip: 192.168.1.18
+[2023-12-04T21:47:59.560793Z] INFO [meter_core] listening on "Intel(R) Ethernet Controller (2) I225-V": [V4(Ipv4Network { addr: 192.168.1.18, prefix: 24 })]
+[2023-12-04T21:51:56.132520Z] INFO [app] starting app v1.4.2
+[2023-12-04T21:51:56.226189Z] INFO [app] settings not found, auto_iface enabled, using ip: 192.168.1.18
+[2023-12-04T21:51:56.495676Z] INFO [app] setting up live meter
+[2023-12-04T21:51:56.553914Z] INFO [meter_core] listening on "Intel(R) Ethernet Controller (2) I225-V": [V4(Ipv4Network { addr: 192.168.1.18, prefix: 24 })]
+[2023-12-04T21:51:56.666521Z] INFO [app] finished meter setup
+[2023-12-04T21:52:03.659864Z] INFO [app] get_network_interfaces: [("Bluetooth Device (Personal Area Network) #3", "0.0.0.0"), ("Intel(R) Ethernet Controller (2) I225-V", "192.168.1.18")]
+[2023-12-04T21:52:06.951552Z] INFO [app] open_db_path: \\?\Z:\RustProjects\loa-logs-analytics\src-tauri\target\debug
+[2023-12-04T21:52:07.405828Z] INFO [app] open_db_path: \\?\Z:\RustProjects\loa-logs-analytics\src-tauri\target\debug
+[2023-12-04T21:52:16.373177Z] INFO [meter_core] new session: 192.168.1.18:2891<->34.233.76.77:6040 (total: 1)
+[2023-12-04T21:52:17.264336Z] INFO [app::parser] init env: Entity { id: 261836961, entity_type: PLAYER, name: "You", npc_id: 0, class_id: 0, gear_level: 0.0, character_id: 0, owner_id: 0, skill_effect_id: 0, skill_id: 0 }
+[2023-12-04T21:52:17.265305Z] INFO [app::parser] local player: "Tideselba", class: "Soulfist", ilvl: 1603.33, id: 105292
+[2023-12-04T21:52:39.492566Z] INFO [app::parser] new npc: ("Suspicious Wooden Chest", NPC, 37185, 71178, 9999, 9999)
+[2023-12-04T21:52:39.492963Z] INFO [app::parser] new npc: ("Suspicious Wooden Chest", NPC, 37153, 71178, 9999, 9999)
+[2023-12-04T21:52:39.493420Z] INFO [app::parser] new npc: ("Suspicious Wooden Chest", NPC, 36737, 71178, 9999, 9999)
+[2023-12-04T21:52:39.493627Z] INFO [app::parser] new npc: ("Suspicious Wooden Chest", NPC, 36705, 71178, 9999, 9999)
+[2023-12-04T21:52:39.493842Z] INFO [app::parser] new npc: ("Gainal", NPC, 36161, 20401, 3779, 3779)
+[2023-12-04T21:52:39.494021Z] INFO [app::parser] new npc: ("Suspicious Wooden Chest", NPC, 35841, 71179, 9999, 9999)
+[2023-12-04T21:52:39.494214Z] INFO [app::parser] new npc: ("Suspicious Wooden Chest", NPC, 33665, 71178, 9999, 9999)
+[2023-12-04T21:52:39.494390Z] INFO [app::parser] new npc: ("Suspicious Wooden Chest", NPC, 33633, 71178, 9999, 9999)
+[2023-12-04T21:52:39.494541Z] INFO [app::parser] new npc: ("The Legoros Man", NPC, 31553, 71142, 9999, 9999)
+[2023-12-04T21:52:39.494776Z] INFO [app::parser] new npc: ("Suspicious Wooden Chest", NPC, 31201, 71178, 9999, 9999)
+[2023-12-04T21:52:39.494914Z] INFO [app::parser] new npc: ("Suspicious Wooden Chest", NPC, 31169, 71178, 9999, 9999)
+[2023-12-04T21:52:39.495087Z] INFO [app::parser] new npc: ("The Legoros Man", NPC, 31137, 71142, 9999, 9999)
+[2023-12-04T21:52:39.495243Z] INFO [app::parser] new npc: ("Ealyn", NPC, 35489, 25336, 9999, 9999)
+[2023-12-04T21:52:39.495406Z] INFO [app::parser] new npc: ("Crew", NPC, 36929, 19540, 9999, 9999)
+[2023-12-04T21:52:39.495561Z] INFO [app::parser] new npc: ("Suspicious Wooden Chest", NPC, 34113, 71178, 9999, 9999)
+[2023-12-04T21:52:39.713439Z] INFO [app::parser] new pc: ("Kaestus", "Scrapper", 261637281, 18406655, 1520.0)
+[2023-12-04T21:52:39.713991Z] INFO [app::parser] new pc: ("Trïvash", "Deadeye", 258606017, 22427915, 1550.0)
+[2023-12-04T21:52:39.714315Z] INFO [app::parser] new pc: ("Músashí", "Slayer", 252474593, 55030663, 1581.66)
+[2023-12-04T21:52:39.714525Z] INFO [app::parser] new npc: ("Advisor Jeffer", NPC, 36961, 71176, 9999, 9999)
+[2023-12-04T21:52:39.714768Z] INFO [app::parser] new npc: ("Shipbuilder Lanchenberg", NPC, 36865, 18545, 4311, 4311)
+[2023-12-04T21:52:39.714932Z] INFO [app::parser] new npc: ("Ealyn", NPC, 36129, 22979, 5766, 5766)
+[2023-12-04T21:52:39.715093Z] INFO [app::parser] new npc: ("Telena", NPC, 36097, 50528, 9999, 9999)
+[2023-12-04T21:52:39.715247Z] INFO [app::parser] new npc: ("Experienced Old Captain", NPC, 35553, 25322, 9999, 9999)
+[2023-12-04T21:52:39.715395Z] INFO [app::parser] new npc: ("Artificial Elemental", NPC, 35521, 25327, 9999, 9999)
+[2023-12-04T21:52:39.715589Z] INFO [app::parser] new npc: ("The Legoros Man", NPC, 34881, 71142, 9999, 9999)
+[2023-12-04T21:52:39.715774Z] INFO [app::parser] new npc: ("Riff", NPC, 32737, 81105, 5766, 5766)
+[2023-12-04T21:52:39.715990Z] INFO [app::parser] new npc: ("The Legoros Man", NPC, 31809, 71142, 9999, 9999)
+[2023-12-04T21:52:39.716181Z] INFO [app::parser] new npc: ("Veteran Adventurer Rotdir", NPC, 31649, 71151, 9999, 9999)
+[2023-12-04T21:52:39.716626Z] INFO [app::parser] new npc: ("Veteran Adventurer Homworg", NPC, 31617, 71154, 9999, 9999)
+[2023-12-04T21:52:39.716808Z] INFO [app::parser] new npc: ("Veteran Adventurer Yunsook", NPC, 31585, 71155, 9999, 9999)
+[2023-12-04T21:52:39.716990Z] INFO [app::parser] new npc: ("Boatswain of the Anemos", NPC, 31297, 71177, 9999, 9999)
+[2023-12-04T21:52:39.717165Z] INFO [app::parser] new npc: ("항구 경비병 남_활2", NPC, 36577, 22151, 5766, 5766)
+[2023-12-04T21:52:39.717357Z] INFO [app::parser] new npc: ("Illayne", NPC, 37057, 83626, 9999, 9999)
+[2023-12-04T21:52:39.717522Z] INFO [app::parser] new npc: ("Marte's Merchant", NPC, 36449, 83624, 9999, 9999)
+[2023-12-04T21:52:39.717701Z] INFO [app::parser] new npc: ("Marte's Merchant", NPC, 35233, 83625, 9999, 9999)
+[2023-12-04T21:52:39.717865Z] INFO [app::parser] new npc: ("Intelligence Agent Haren", NPC, 33441, 50843, 9999, 9999)
+[2023-12-04T21:52:39.718023Z] INFO [app::parser] new npc: ("Marte's Merchant", NPC, 36481, 83623, 9999, 9999)
+[2023-12-04T21:52:39.718185Z] INFO [app::parser] new npc: ("Cindy's Mom", NPC, 36385, 71182, 9999, 9999)
+[2023-12-04T21:52:39.718343Z] INFO [app::parser] new npc: ("항구 경비병 남_활2", NPC, 35585, 22149, 5766, 5766)
+[2023-12-04T21:52:39.718527Z] INFO [app::parser] new npc: ("Cindy's Mom", NPC, 31681, 71182, 9999, 9999)
+[2023-12-04T21:53:06.131077Z] INFO [app::parser] new npc: ("항구 경비병 남_활1", NPC, 35457, 22153, 5766, 5766)
+[2023-12-04T21:53:12.882478Z] INFO [app::parser] new npc: ("항구 경비병 남_활2", NPC, 36577, 22151, 5766, 5766)
+[2023-12-04T21:53:21.227894Z] INFO [app::parser] new pc: ("Okesama", "Gunslinger", 261881697, 50376200, 1550.0)
+[2023-12-04T21:54:20.941168Z] INFO [app::parser] new pc: ("Murakumogiri", "Summoner", 261941697, 49622169, 1583.33)
+[2023-12-04T21:54:44.342734Z] INFO [app::parser] new pc: ("Beeter", "Scrapper", 261970945, 8586604, 1370.0)
+[2023-12-04T21:54:45.625115Z] INFO [app::parser] new npc: ("항구 경비병 남_활1", NPC, 35457, 22153, 5766, 5766)
+[2023-12-04T21:54:47.124778Z] INFO [app::parser] new npc: ("항구 경비병 남_활2", NPC, 36577, 22151, 5766, 5766)
+[2023-12-05T04:15:48.205569Z] INFO [app] starting app v1.4.2
+[2023-12-05T04:15:48.220005Z] INFO [app] settings loaded
+[2023-12-05T04:15:48.256879Z] INFO [app] auto_iface enabled, using ip: 192.168.1.18
+[2023-12-05T04:15:48.443402Z] INFO [meter_core] listening on "Intel(R) Ethernet Controller (2) I225-V": [V4(Ipv4Network { addr: 192.168.1.18, prefix: 24 })]
+[2023-12-05T04:15:48.494259Z] INFO [app] setting up live meter
+[2023-12-05T04:15:48.585117Z] INFO [app] finished meter setup
+[2023-12-05T04:16:07.711117Z] INFO [app] starting app v1.4.2
+[2023-12-05T04:16:07.721289Z] INFO [app] settings loaded
+[2023-12-05T04:16:07.738041Z] INFO [app] auto_iface enabled, using ip: 192.168.1.18
+[2023-12-05T04:16:07.953646Z] INFO [meter_core] listening on "Intel(R) Ethernet Controller (2) I225-V": [V4(Ipv4Network { addr: 192.168.1.18, prefix: 24 })]
+[2023-12-05T04:16:08.035368Z] INFO [app] setting up live meter
+[2023-12-05T04:16:08.139052Z] INFO [app] finished meter setup

@@ -5,6 +5,7 @@
 
 mod parser;
 mod resources;
+mod analytics;
 use std::{
     fs::{self, File},
     io::{Read, Write},
@@ -945,6 +946,12 @@ fn delete_encounters(window: tauri::Window, ids: Vec<i32>) {
     info!("deleting encounters: {:?}", ids);
 
     stmt.execute(params_from_iter(ids)).unwrap();
+}
+
+#[tauri::command]
+fn calculate_uptime_graph(window: tauri::Window, characterName: String){
+    //TODO: Add uptime calculation call (potentially farm out to separate thread)
+    
 }
 
 #[tauri::command]
