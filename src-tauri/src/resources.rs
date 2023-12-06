@@ -1,5 +1,9 @@
-use std::{path::PathBuf, fs::{self, File}, io};
-use anyhow::{Result, Context};
+use anyhow::{Context, Result};
+use std::{
+    fs::{self, File},
+    io,
+    path::PathBuf,
+};
 
 use log::info;
 
@@ -21,13 +25,14 @@ impl Resources {
         }
 
         info!("extracting resources");
-        let zip = File::open(&self.resource_path)
-            .context("failed to open the resource zip file")?;
+        let zip =
+            File::open(&self.resource_path).context("failed to open the resource zip file")?;
         let mut archive = zip::ZipArchive::new(zip)
             .context("failed to create a ZipArchive from the resource zip file")?;
 
         for i in 0..archive.len() {
-            let mut file = archive.by_index(i)
+            let mut file = archive
+                .by_index(i)
                 .context("failed to read file from ZipArchive")?;
             let outpath = match file.enclosed_name() {
                 Some(path) => path.to_owned(),
@@ -35,19 +40,16 @@ impl Resources {
             };
 
             if (*file.name()).ends_with('/') {
-                fs::create_dir_all(&outpath)
-                    .context("failed to create directory")?;
+                fs::create_dir_all(&outpath).context("failed to create directory")?;
             } else {
                 if let Some(p) = outpath.parent() {
                     if !p.exists() {
-                        fs::create_dir_all(p)
-                            .context("failed to create directory")?;
+                        fs::create_dir_all(p).context("failed to create directory")?;
                     }
                 }
-                let mut outfile = fs::File::create(&outpath)
-                    .context("failed to create file for extraction")?;
-                io::copy(&mut file, &mut outfile)
-                    .context("failed to write data to file")?;
+                let mut outfile =
+                    fs::File::create(&outpath).context("failed to create file for extraction")?;
+                io::copy(&mut file, &mut outfile).context("failed to write data to file")?;
             }
         }
 
@@ -62,8 +64,7 @@ impl Resources {
     }
 
     fn delete_zip(&self) -> Result<()> {
-        fs::remove_file(&self.resource_path)
-            .context("Failed to delete the resource zip file")?;
+        fs::remove_file(&self.resource_path).context("Failed to delete the resource zip file")?;
         Ok(())
     }
 }

@@ -823,7 +823,6 @@ lazy_static! {
     };
 }
 
-
 fn default_true() -> bool {
     true
 }

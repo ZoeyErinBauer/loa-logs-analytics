@@ -226,7 +226,10 @@ impl StatusTracker {
             Some(ser) => ser,
             None => return Vec::new(),
         };
-        ser.retain(|_, se| se.expire_at.map_or(true, |expire_at| expire_at > Utc::now()));
+        ser.retain(|_, se| {
+            se.expire_at
+                .map_or(true, |expire_at| expire_at > Utc::now())
+        });
         ser.values().cloned().collect()
     }
 

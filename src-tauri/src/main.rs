@@ -1,11 +1,12 @@
 #![cfg_attr(
-    all(not(debug_assertions), target_os = "windows"),
-    windows_subsystem = "windows"
+all(not(debug_assertions), target_os = "windows"),
+windows_subsystem = "windows"
 )]
 
+mod analytics;
 mod parser;
 mod resources;
-mod analytics;
+
 use std::{
     fs::{self, File},
     io::{Read, Write},
@@ -72,7 +73,6 @@ async fn main() -> Result<()> {
         .add_item(reset)
         .add_native_item(SystemTrayMenuItem::Separator)
         .add_item(quit);
-
     let system_tray = SystemTray::new().with_menu(tray_menu);
 
     tauri::Builder::default()
@@ -129,7 +129,8 @@ async fn main() -> Result<()> {
                             right_name.clone().into_iter().find(|iface| iface.1 == ip);
                         if perfect_match.is_none() {
                             //in case of multiple interfaces with same name, try the first one
-                            ip = right_name[0].1.clone(); //get the up to date ip
+                            ip = right_name[0].1.clone();
+                            //get the up to date ip
                             warn!("ip for manual interface was wrong, using ip: {}", ip);
                         }
                     } else {
@@ -398,7 +399,7 @@ fn setup_db(resource_path: PathBuf) -> Result<(), String> {
             "ALTER TABLE encounter ADD COLUMN favorite BOOLEAN DEFAULT 0",
             [],
         )
-        .expect("failed to add columns");
+            .expect("failed to add columns");
         conn.execute(
             &format!(
                 "ALTER TABLE encounter ADD COLUMN version INTEGER DEFAULT {}",
@@ -406,14 +407,14 @@ fn setup_db(resource_path: PathBuf) -> Result<(), String> {
             ),
             [],
         )
-        .expect("failed to add columns");
+            .expect("failed to add columns");
         conn.execute("ALTER TABLE encounter ADD COLUMN cleared BOOLEAN", [])
             .expect("failed to add columns");
         conn.execute(
             "CREATE INDEX IF NOT EXISTS encounter_favorite_index ON encounter (favorite);",
             [],
         )
-        .expect("failed to add index");
+            .expect("failed to add index");
     }
 
     let mut stmt = conn
@@ -427,7 +428,7 @@ fn setup_db(resource_path: PathBuf) -> Result<(), String> {
             "ALTER TABLE encounter ADD COLUMN boss_only_damage BOOLEAN NOT NULL DEFAULT 0",
             [],
         )
-        .expect("failed to add column");
+            .expect("failed to add column");
     }
 
     match conn.execute_batch(
@@ -949,9 +950,8 @@ fn delete_encounters(window: tauri::Window, ids: Vec<i32>) {
 }
 
 #[tauri::command]
-fn calculate_uptime_graph(window: tauri::Window, characterName: String){
+fn calculate_uptime_graph(window: tauri::Window, characterName: String) {
     //TODO: Add uptime calculation call (potentially farm out to separate thread)
-    
 }
 
 #[tauri::command]
@@ -1065,7 +1065,7 @@ fn delete_encounters_below_min_duration(window: tauri::Window, min_duration: i64
     ",
         params![min_duration * 1000],
     )
-    .unwrap();
+        .unwrap();
     conn.execute("VACUUM;", params![]).unwrap();
 }
 
@@ -1084,7 +1084,7 @@ fn delete_all_uncleared_encounters(window: tauri::Window) {
     ",
         [],
     )
-    .unwrap();
+        .unwrap();
     conn.execute("VACUUM;", params![]).unwrap();
 }
 
