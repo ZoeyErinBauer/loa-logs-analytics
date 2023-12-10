@@ -47,11 +47,13 @@ fn calculate_synergy_uptime(character_name: String, start_date: NaiveDate, end_d
         )
         .unwrap();
     let mut entity_stmt = conn.prepare_cached(&query).unwrap();
-    let player_rows = entity_stmt.query([]);
-    while let Some(row) = player_rows.next()?
+    let mut player_rows = entity_stmt.query([]).unwrap();
+    while let (row) = player_rows.next()
     {
+        let unwrap_row = row.unwrap().unwrap();
         //party buff logic goes here
-        let encounter_iter = encounter_stmt.query_map(row.get(4), |row| {
+        let enc_id = unwrap_row.get(4).unwrap_or_else(|_| "".to_string());
+        let encounter_iter = encounter_stmt.query_map([enc_id], |row| {
             let buff_str = row.get(10).unwrap_or_else(|_| "".to_string());
             let buffs = serde_json::from_str::<HashMap<i32, StatusEffect>>(buff_str.as_str())
                 .unwrap_or_else(|_| HashMap::new());
@@ -88,23 +90,23 @@ fn calculate_synergy_uptime(character_name: String, start_date: NaiveDate, end_d
                 ..Default::default()
             })
         }).expect("could not query encounter");
-        let mut encounters = Vec::new();
+        let mut encounters:Vec<Encounter> = Vec::new();
         let mut data_points = Vec::new();
         for encounter in encounter_iter {
-            encounters.push(encounter.unwrap());
             let unwrap_encounter = encounter.unwrap_or_default();
             let dmg_stats = unwrap_encounter.encounter_damage_stats;
             let encounter_date = NaiveDateTime::from_timestamp_millis(unwrap_encounter.fight_start).unwrap();
-            data_points.push(UptimeGraphData{
-                    data_points: Default::default(),
-                    data_datetime: encounter_date
+            //TODO: Extract date and convert buff uptime to graph objects
+            data_points.push(UptimeGraphData {
+                data_points: Default::default(),
+                data_datetime: encounter_date,
             })
         }
 
 
-        //TODO: Extract date and convert buff uptime to graph objects
 
-        let skill_str = row.get(3).unwrap_or_else(|_| "".to_string());
+
+        let skill_str = unwrap_row.get(3).unwrap_or_else(|_| "".to_string());
         let skills = serde_json::from_str::<HashMap<i32, Skill>>(skill_str.as_str())
             .unwrap_or_else(|_| HashMap::new());
         for (key, value) in skills.iter()
