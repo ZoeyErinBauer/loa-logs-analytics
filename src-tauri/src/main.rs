@@ -825,9 +825,7 @@ fn load_encounter(window: tauri::Window, id: String) -> Encounter {
     for entity in entity_iter.flatten() {
         entities.insert(entity.name.to_string(), entity);
     }
-
     encounter.entities = entities;
-
     encounter
 }
 
