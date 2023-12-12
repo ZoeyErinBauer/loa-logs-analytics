@@ -668,6 +668,10 @@ pub enum HitFlag {
 }
 
 lazy_static! {
+    pub static ref PC_CLASSES: HashMap<u32, String> = {
+        let json_str = include_str!("../../meter-data/PCData.json");
+        serde_json::from_str(json_str).unwrap()
+    };
     pub static ref NPC_DATA: HashMap<u32, Npc> = {
         let json_str = include_str!("../../meter-data/Npc.json");
         serde_json::from_str(json_str).unwrap()

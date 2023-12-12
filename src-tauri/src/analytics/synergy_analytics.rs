@@ -3,11 +3,14 @@ use chrono::{DateTime, Local, NaiveDate, NaiveDateTime, TimeZone};
 use hashbrown::HashMap;
 use crate::analytics::models::{UptimeAnalytics, UptimeGraphData};
 use crate::get_db_connection;
-use crate::parser::models::{Encounter, EncounterDamageStats, EncounterMisc, Skill, StatusEffect};
+use crate::parser::models::{Encounter, EncounterDamageStats, EncounterMisc, PC_CLASSES, Skill, SkillData, StatusEffect, StatusEffectTarget};
 use crate::parser::models::HitOption::NONE;
 
 fn calculate_synergy_uptime(character_name: String, start_date: NaiveDate, end_date: NaiveDate, resource_path: &Path) -> UptimeAnalytics
 {
+    //Synergy Group Map
+    let mut grouped_synergies : HashMap<String, HashMap<i32,StatusEffect>> = HashMap::new();
+
     let conn = get_db_connection(resource_path).expect("could not get db connection");
     //potentially optimize the join in reverse to use encounters instead of characters
     // first have to check if last_update stores the information on placed date.
@@ -90,7 +93,7 @@ fn calculate_synergy_uptime(character_name: String, start_date: NaiveDate, end_d
                 ..Default::default()
             })
         }).expect("could not query encounter");
-        let mut encounters:Vec<Encounter> = Vec::new();
+        let mut encounters: Vec<Encounter> = Vec::new();
         let mut data_points = Vec::new();
         for encounter in encounter_iter {
             let unwrap_encounter = encounter.unwrap_or_default();
@@ -102,8 +105,6 @@ fn calculate_synergy_uptime(character_name: String, start_date: NaiveDate, end_d
                 data_datetime: encounter_date,
             })
         }
-
-
 
 
         let skill_str = unwrap_row.get(3).unwrap_or_else(|_| "".to_string());
@@ -123,3 +124,35 @@ fn calculate_synergy_uptime(character_name: String, start_date: NaiveDate, end_d
         graph_data,
     }
 }
+
+fn calculate_uptime_percent(encounter_damage_stats: &EncounterDamageStats, encounter_date: &NaiveDateTime, grouped_synergies : HashMap<String, HashMap<i32,StatusEffect>>) -> UptimeGraphData {
+    let buff_category = [String::from("classskill"), String::from("identity"), String::from("ability")];
+    //Iterate over all status effects
+    for buff_with_id in &encounter_damage_stats.buffs {
+        let mut key = "".to_string();
+        let buff = buff_with_id.1;
+        if (buff_category.contains(&buff.buff_category.to_string()) && buff.target.eq(&StatusEffectTarget::PARTY))
+        {
+            if (!buff.source.skill.is_none() && [105, 204, 602].contains(&buff.source.skill.as_ref().unwrap().class_id))
+            {
+                key = "_".to_string();
+            }
+            key.push_str(PC_CLASSES.get(&buff.source.skill.as_ref().unwrap().class_id).unwrap());
+            key.push('_');
+            if (&buff.unique_group > &i32::default())
+            {
+                key.push_str(&buff.unique_group.to_string());
+            } else {
+                key.push_str(&buff.source.skill.as_ref().unwrap().name);
+            }
+            let lower_key = key.replace(" ","").to_lowercase();
+            //TODO: FINISH IMPLEMENTINGS BUFF.TS LINE 28 GROUPEDSYNERGIES ADD
+        }
+
+    }
+    UptimeGraphData {
+        data_datetime: encounter_date.clone(),
+        data_points: Default::default(),
+    }
+}
+
